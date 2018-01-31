@@ -53,3 +53,11 @@ nav.navbar {
 .home-heading-wrapper > p {
   font-size: 2rem;
 }
+
+.m-t-50 {
+  margin-top: 50px;
+}
+
+.input-group-addon .fa {
+  width: 12px;
+}

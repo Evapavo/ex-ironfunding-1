@@ -11,8 +11,10 @@ const mongoose = require('mongoose');
 const expressLayouts = require('express-ejs-layouts');
 
 require('./configs/db.config');
+require('./configs/passport.config').setup(passport);
 
 const home = require('./routes/home.routes');
+const auth = require('./routes/auth.routes');
 
 const app = express();
 
@@ -46,14 +48,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(function (req, res, next) {
-  res.locals.session = req.user;
+  res.locals.session = req.user || {};
   next();
 });
 
-
-// Routes
-
 app.use('/', home);
+app.use('/', auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
